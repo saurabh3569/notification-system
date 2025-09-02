@@ -7,6 +7,8 @@ const env = cleanEnv(process.env, {
   VERIFIED_EMAIL: str({ default: "" }),
   NODE_MAILER_GMAIL: str({ default: "" }),
   NODE_MAILER_PASS: str({ default: "" }),
+  RABBITMQ_URL: str({ default: "amqp://localhost:5672" }),
+  RABBITMQ_EMAIL_QUEUE: str({ default: "email-queue" }),
 });
 
 module.exports = { env };

@@ -1,14 +1,14 @@
-const emailService = require("../services/email.service");
+const { env } = require("../configs/env.config");
+const { sendToQueue } = require("../utils/rabbitmq/rabbitmq");
 
 const emailController = {
   sendEmail: async (req, res) => {
     try {
-      const response = await emailService.sendEmail(req.body);
+      await sendToQueue(req.body);
 
-      return res
-        .status(200)
-        .json({ message: "Email sent successfully", response });
+      return res.status(200).json({ message: "Email sent successfully" });
     } catch (error) {
+      console.log(error);
       return res.status(500).json({ message: "Error sending email", error });
     }
   },
